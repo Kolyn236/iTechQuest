@@ -11,21 +11,26 @@ include 'vendor/autoload.php';
 $dotenv = \Dotenv\Dotenv::createImmutable(dirname(__FILE__));
 $dotenv->load();
 
-$list_lead = list_lead();
-
 if(isset($_REQUEST['delete'])){
 
     $deleted = delete_lead($_REQUEST['delete']);
 
 }
 
+
 if(isset($_REQUEST['firstname']) && isset($_REQUEST['lastname'])) {
 
     $created = create_lead($_REQUEST);
 
+    $list_lead = list_lead();
+
     if($_REQUEST['message_resend']){
         sendNotification( $_REQUEST['email'] ,$list_lead['total']);
     }
+
+} else {
+
+    $list_lead = list_lead();
 
 }
 
@@ -38,7 +43,7 @@ if(isset($_REQUEST['firstname']) && isset($_REQUEST['lastname'])) {
 function delete_lead($id = null){
 
     if($id) {
-        $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/'.  getenv("WEBHOOK_ID")  .'/crm.lead.delete';
+        $queryUrl = getenv("REST_URL").  getenv("WEBHOOK_ID")  .'/crm.lead.delete';
         $queryData = http_build_query([
             'id' => $id
         ]);
@@ -58,7 +63,7 @@ function delete_lead($id = null){
  */
 function create_lead($fields = null){
 
-    $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/'. getenv("WEBHOOK_ID") .'/crm.lead.add';
+    $queryUrl = getenv("REST_URL").  getenv("WEBHOOK_ID") .'/crm.lead.add';
     $queryData = http_build_query([
         'fields' => array(
             "TITLE" => 'Заявка от ' . $fields['firstname']. ' '. $fields['lastname'],
@@ -134,7 +139,7 @@ function sendNotification($email, $stack_number = 0){
  */
 function list_lead(){
 
-    $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/'. getenv("WEBHOOK_ID") .'/crm.lead.list';
+    $queryUrl = getenv("REST_URL").  getenv("WEBHOOK_ID") .'/crm.lead.list';
     $queryData = http_build_query([
 
     ]);
