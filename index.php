@@ -9,12 +9,10 @@ if(isset($_REQUEST['delete'])){
 }
 
 if(isset($_REQUEST['firstname']) && isset($_REQUEST['lastname'])) {
-    print_r($_REQUEST);exit();
-    create_lead($_REQUEST);
+
+    $created = create_lead($_REQUEST);
+
 }
-
-
-
 
 
 function delete_lead($id = null){
@@ -41,18 +39,16 @@ function create_lead($fields = null){
             "OPENED" => "Y",
             "ASSIGNED_BY_ID" => 1,
             "CURRENCY_ID"=> "USD",
-            "OPPORTUNITY" => 12500,
             "PHONE" => array(array("VALUE" => $fields['phone'], "VALUE_TYPE" => "WORK" )),
             "EMAIL" => array(array("VALUE" => $fields['email'], "VALUE_TYPE" => "WORK" )),
         ),
         'params' => array("REGISTER_SONET_EVENT" => "Y")
     ]);
 
-    $result = curl_send_request($queryUrl , $queryData);
-
-//echo '<pre>';print_r($result);exit();
+    return curl_send_request($queryUrl , $queryData);
 
 //    if (array_key_exists('error', $result)) echo "Ошибка при сохранении лида: ".$result['error_description']."<br/>";
+
 }
 
 function list_lead(){

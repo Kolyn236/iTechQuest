@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
-<?php if(isset($deleted)):?>
-<?php print_r($deleted)?>
+<?php if(isset($deleted['result'])):?>
+    <div class="alert alert-primary" role="alert">
+        Запись лида была успешно удалена!
+    </div>
+<?php endif;?>
+<?php if(isset($created)):?>
+    <div class="alert alert-primary" role="alert">
+        Спасибо за обращение, ваш номер в очереди:  <? echo $created['result']?>
+    </div>
 <?php endif;?>
 <div class="container" style="height: 10%;">
     <div class="alert" id="message" role="alert" style="display: none">
