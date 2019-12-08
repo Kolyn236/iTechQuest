@@ -19,9 +19,13 @@ if(isset($_REQUEST['delete'])){
 if(isset($_REQUEST['firstname']) && isset($_REQUEST['lastname'])) {
 
     $created = create_lead($_REQUEST);
-    sendNotification( $_REQUEST['email'] ,$list_lead['total']);
+
+    if($_REQUEST['message_resend']){
+        sendNotification( $_REQUEST['email'] ,$list_lead['total']);
+    }
 
 }
+
 /**
  * Delete lead from service
  *
@@ -61,6 +65,7 @@ function create_lead($fields = null){
             "OPENED" => "Y",
             "ASSIGNED_BY_ID" => 1,
             "CURRENCY_ID"=> "USD",
+            "COMMENTS" => $fields['message'],
             "PHONE" => array(array("VALUE" => $fields['phone'], "VALUE_TYPE" => "WORK" )),
             "EMAIL" => array(array("VALUE" => $fields['email'], "VALUE_TYPE" => "WORK" )),
         ),
@@ -91,12 +96,12 @@ function sendNotification($email, $stack_number = 0){
         //Server settings
         $mail->SMTPDebug = SMTP::DEBUG_OFF;                      // Enable verbose debug output default DEBUG_SERVER
         $mail->isSMTP();                                            // Send using SMTP
-        $mail->Host       = 'smtp.mailtrap.io';                    // Set the SMTP server to send through
+        $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'dc8513e004a562';                     // SMTP username
-        $mail->Password   = 'a83d171e98b4c4';                               // SMTP password
+        $mail->Username   = 'nikolkady@gmail.com';                     // SMTP username
+        $mail->Password   = 'mySuperPassword';                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-        $mail->Port       = 2525;                                    // TCP port to connect to
+        $mail->Port       = 587;                                    // TCP port to connect to
 
 
         //Recipients
