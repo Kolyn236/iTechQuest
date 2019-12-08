@@ -8,6 +8,9 @@ use PHPMailer\PHPMailer\SMTP;
 
 include 'vendor/autoload.php';
 
+$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__FILE__));
+$dotenv->load();
+
 $list_lead = list_lead();
 
 if(isset($_REQUEST['delete'])){
@@ -35,7 +38,7 @@ if(isset($_REQUEST['firstname']) && isset($_REQUEST['lastname'])) {
 function delete_lead($id = null){
 
     if($id) {
-        $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/wlrsr314o80qg8wf/crm.lead.delete';
+        $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/'.  getenv("WEBHOOK_ID")  .'/crm.lead.delete';
         $queryData = http_build_query([
             'id' => $id
         ]);
@@ -55,7 +58,7 @@ function delete_lead($id = null){
  */
 function create_lead($fields = null){
 
-    $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/wlrsr314o80qg8wf/crm.lead.add';
+    $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/'. getenv("WEBHOOK_ID") .'/crm.lead.add';
     $queryData = http_build_query([
         'fields' => array(
             "TITLE" => 'Заявка от ' . $fields['firstname']. ' '. $fields['lastname'],
@@ -94,14 +97,14 @@ function sendNotification($email, $stack_number = 0){
 
     try {
         //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_OFF;                      // Enable verbose debug output default DEBUG_SERVER
+        $mail->SMTPDebug = getenv("DEBUG_MODE") ? SMTP::DEBUG_SERVER : SMTP::DEBUG_OFF ;                      // Enable verbose debug output default DEBUG_SERVER
         $mail->isSMTP();                                            // Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+        $mail->Host       = getenv("SMTP_HOST");                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'nikolkady@gmail.com';                     // SMTP username
-        $mail->Password   = 'mySuperPassword';                               // SMTP password
+        $mail->Username   = getenv('SMTP_USER');                     // SMTP username
+        $mail->Password   = getenv("SMTP_PASSWORD");                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-        $mail->Port       = 587;                                    // TCP port to connect to
+        $mail->Port       = getenv("SMTP_PORT");                                    // TCP port to connect to
 
 
         //Recipients
@@ -131,7 +134,7 @@ function sendNotification($email, $stack_number = 0){
  */
 function list_lead(){
 
-    $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/wlrsr314o80qg8wf/crm.lead.list';
+    $queryUrl = 'https://b24-d2ybw4.bitrix24.ru/rest/1/'. getenv("WEBHOOK_ID") .'/crm.lead.list';
     $queryData = http_build_query([
 
     ]);
