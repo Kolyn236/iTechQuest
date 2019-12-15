@@ -8,27 +8,13 @@
 </head>
 <body>
 
-<?php if(isset($deleted['result'])):?>
-    <div class="alert alert-primary" role="alert">
-        Запись лида была успешно удалена!
-    </div>
-<?php endif;?>
-
-<?php if(isset($created)):?>
-
-    <div class="alert alert-primary" role="alert">
-        Спасибо за обращение, ваш номер в очереди:  <?php echo $list_lead['total'];?>
-    </div>
-
-<?php endif;?>
-
-<div class="container" style="height: 10%;">
-    <div class="alert" id="message" role="alert" style="display: none">
+<div style="height: 10%;">
+    <div class="alert alert-primary text-center" id="message" role="alert" style="display: none">
         Это уведомление об успехе — check it out!
     </div>
 </div>
 
-<div class="container wrapper" style="height: 90%;">
+<div class="container wrapper list_lead">
     <div class="row">
         <div class="col-lg-4">
             <h2>Список доступных лидов</h2>
@@ -48,7 +34,7 @@
                         <td><? echo $lead['ID'];?></td>
                         <td><? echo $lead['TITLE'];?></td>
                         <td align="center">
-                            <span onclick="javascript:delete_lead(<? echo $lead['ID'];?>)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                            <span onclick="javascript:deleteLead(<? echo $lead['ID'];?>)"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </td>
                     </tr>
                     <?endforeach;?>
@@ -65,36 +51,31 @@
                 <div class="form-group">
                     <label for="firstName">Имя</label>
                     <input type="name" class="form-control" name="firstname" id="firstName" placeholder="Имя">
-                    <div class="error-box"></div>
+                    <div class="error-box">Поле имя обязательно для заполнения</div>
                 </div>
                 <div class="form-group">
                     <label for="lastname">Фамилия</label>
                     <input type="text" class="form-control" name="lastname" id="lastname"  placeholder="Фамилия">
-                    <div class="error-box"></div>
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
-                    <div class="error-box"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="phone">Phone</label>
                     <input type="phone" class="form-control" name="phone" id="phone" placeholder="Phone">
-                    <div class="error-box"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="message" >Текст сообщения</label>
                     <textarea class="form-control" name="message"  placeholder="Текст сообщения">
                     </textarea>
-                    <div class="error-box"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="message_resend" > Отправить сообщение на почту </label>
                         <input type="checkbox"  name="message_resend">
-                    <div class="error-box"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Отправить</button>
