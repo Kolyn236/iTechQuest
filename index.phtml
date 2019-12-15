@@ -17,7 +17,7 @@
 <?php if(isset($created)):?>
 
     <div class="alert alert-primary" role="alert">
-        Спасибо за обращение, ваш номер в очереди:  <?= $list_lead['total'];?>
+        Спасибо за обращение, ваш номер в очереди:  <?php echo $list_lead['total'];?>
     </div>
 
 <?php endif;?>
@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-lg-4">
             <h2>Список доступных лидов</h2>
-            <p>Всего доступно лидов <?= $list_lead['total'];?></p>
+            <p>Всего доступно лидов <?php echo $list_lead['total'];?></p>
             <table class="table">
                 <thead>
                     <th>Id</th>
@@ -40,15 +40,15 @@
                     <th>Удалить</th>
                 </thead>
 
-                <tbody>
-                <?if($list_lead['total']):?>
+                <tbody id="requests">
+                <?php if($list_lead['total']):?>
 
-                    <?foreach($list_lead['result'] as $lead):?>
+                    <?php foreach($list_lead['result'] as $lead):?>
                     <tr>
-                        <td><? echo  $lead['ID'];?></td>
+                        <td><? echo $lead['ID'];?></td>
                         <td><? echo $lead['TITLE'];?></td>
                         <td align="center">
-                            <a href="index.php?delete=<?=  $lead['ID'];?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            <a href="index.php?delete=<?php echo  $lead['ID'];?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     <?endforeach;?>
@@ -93,7 +93,7 @@
 
                 <div class="form-group">
                     <label for="message_resend" > Отправить сообщение на почту </label>
-                        <input type="checkbox"  name="message_resend" checked="">
+                        <input type="checkbox"  name="message_resend">
                     <div class="error-box"></div>
                 </div>
 
@@ -105,6 +105,10 @@
     </div>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+
+<script src="main.js"></script>
 
 </body>
 </html>

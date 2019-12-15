@@ -17,14 +17,13 @@ if(isset($_REQUEST['delete'])){
 
 }
 
-
 if(isset($_REQUEST['firstname']) && isset($_REQUEST['lastname'])) {
 
     $created = create_lead($_REQUEST);
 
     $list_lead = list_lead();
 
-    if($_REQUEST['message_resend']){
+    if(isset($_REQUEST['message_resend'])){
         sendNotification( $_REQUEST['email'] ,$list_lead['total']);
     }
 
@@ -33,6 +32,17 @@ if(isset($_REQUEST['firstname']) && isset($_REQUEST['lastname'])) {
     $list_lead = list_lead();
 
 }
+
+if (
+    isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+    && !empty($_SERVER['HTTP_X_REQUESTED_WITH'])
+    && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+) {
+
+    echo json_encode($list_lead['result']);
+    exit;
+}
+
 
 /**
  * Delete lead from service
