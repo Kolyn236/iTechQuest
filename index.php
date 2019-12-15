@@ -18,13 +18,13 @@ if (
     && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
 ) {
 
-    if (isset($_REQUEST['id'])) {
+    if (!empty($_REQUEST['id'])) {
 
         $deleted = $leadHandler->deleteLead($_REQUEST['id']);
 
     }
 
-    if (isset($_REQUEST['firstname']) && isset($_REQUEST['email'])) {
+    if (!empty($_REQUEST['firstname']) && !empty($_REQUEST['email'])) {
 
         $created = $leadHandler->createLead($_REQUEST);
 
@@ -49,4 +49,4 @@ if (
 
 
 
-include 'index.phtml';
+include 'public/index.phtml';
