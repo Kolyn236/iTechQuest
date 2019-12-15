@@ -158,6 +158,13 @@ function list_lead(){
     $queryData = http_build_query([
         "filter" => [
             "STATUS_ID" => "NEW"
+        ],
+        "select" => [
+            "ID",
+            "TITLE",
+            "STATUS_ID",
+            "NAME",
+            "LAST_NAME"
         ]
     ]);
     return curl_send_request($queryUrl, $queryData);
