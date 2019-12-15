@@ -11,9 +11,14 @@ include 'vendor/autoload.php';
 $dotenv = \Dotenv\Dotenv::createImmutable(dirname(__FILE__));
 $dotenv->load();
 
-if(isset($_REQUEST['delete'])){
+if(isset($_REQUEST['id'])){
 
-    $deleted = delete_lead($_REQUEST['delete']);
+    $deleted = delete_lead($_REQUEST['id']);
+
+    $list_lead = list_lead();
+
+    echo json_encode($list_lead['result']);
+    exit;
 
 }
 

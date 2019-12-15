@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-lg-4">
             <h2>Список доступных лидов</h2>
-            <p>Всего доступно лидов <?php echo $list_lead['total'];?></p>
+            <p>Всего доступно лидов <span id="countLeads"> <?php echo $list_lead['total'];?></span></p>
             <table class="table">
                 <thead>
                     <th>Id</th>
@@ -48,7 +48,7 @@
                         <td><? echo $lead['ID'];?></td>
                         <td><? echo $lead['TITLE'];?></td>
                         <td align="center">
-                            <a href="index.php?delete=<?php echo  $lead['ID'];?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            <span onclick="javascript:delete_lead(<? echo $lead['ID'];?>)"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </td>
                     </tr>
                     <?endforeach;?>
