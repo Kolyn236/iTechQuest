@@ -156,7 +156,9 @@ function list_lead(){
 
     $queryUrl = getenv("REST_URL").  getenv("WEBHOOK_ID") .'/crm.lead.list';
     $queryData = http_build_query([
-
+        "filter" => [
+            "STATUS_ID" => "NEW"
+        ]
     ]);
     return curl_send_request($queryUrl, $queryData);
 }
