@@ -1,9 +1,21 @@
 <?php
 
+/**
+ *
+ * PHP version 7.2.0
+ *
+ * @category Bitrix 24
+ * @author Itech-Group LLC <nikola@itech-group.ru>
+ * @see ____file_see____
+ * @since Битрикс 24
+ */
+
 namespace App\Actions;
 
 /**
  * Class LeadAction
+ * Create and delete Lead from service
+ *
  * @package App\Actions
  */
 class LeadAction extends BaseAction

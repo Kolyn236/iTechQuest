@@ -1,5 +1,15 @@
 <?php
 
+/**
+ *
+ * PHP version 7.2.0
+ *
+ * @category Bitrix 24
+ * @author Itech-Group LLC <nikola@itech-group.ru>
+ * @see ____file_see____
+ * @since Битрикс 24
+ */
+
 namespace App\Mailer;
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -8,6 +18,8 @@ use PHPMailer\PHPMailer\SMTP;
 
 /**
  * Class Mailer
+ * PHPMailer wrapper. Sending mail to customer.
+ *
  * @package App\Mailer
  */
 class Mailer

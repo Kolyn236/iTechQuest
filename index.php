@@ -1,5 +1,17 @@
 <?php
 
+/**
+ *
+ * PHP version 7.2.0
+ *
+ * Handle request user
+ *
+ * @category Bitrix 24
+ * @author Itech-Group LLC <nikola@itech-group.ru>
+ * @see ____file_see____
+ * @since Битрикс 24
+ */
+
 use App\Actions\LeadAction;
 use App\Mailer\Mailer;
 
@@ -37,7 +49,8 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
     echo json_encode($listLead['result']);
     exit;
 } else {
-    $listLead = $leadHandler->listLead();
+    $listLead = $leadHandler
+        ->listLead();
 }
 
 
