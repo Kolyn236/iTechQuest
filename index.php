@@ -30,20 +30,20 @@ if (
 
     }
 
-    $list_lead = $leadHandler->listLead();
+    $listLead = $leadHandler->listLead();
 
     if (isset($_REQUEST['message_resend'])) {
 
-        (new Mailer())->sendNotification($_REQUEST['email'], $list_lead['total']);
+        (new Mailer())->sendNotification($_REQUEST['email'], $listLead['total']);
 
     }
 
-    echo json_encode($list_lead['result']);
+    echo json_encode($listLead['result']);
     exit;
 
 } else {
 
-    $list_lead = $leadHandler->listLead();
+    $listLead = $leadHandler->listLead();
 
 }
 

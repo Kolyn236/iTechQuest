@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-lg-4">
             <h2>Список доступных лидов</h2>
-            <p>Всего доступно лидов <span id="countLeads"> <?php echo $list_lead['total'];?></span></p>
+            <p>Всего доступно лидов <span id="countLeads"> <?php echo $listLead['total'];?></span></p>
             <table class="table">
                 <thead>
                     <th>Id</th>
@@ -27,9 +27,9 @@
                 </thead>
 
                 <tbody id="requests">
-                <?php if($list_lead['total']):?>
+                <?php if($listLead['total']):?>
 
-                    <?php foreach($list_lead['result'] as $lead):?>
+                    <?php foreach($listLead['result'] as $lead):?>
                     <tr>
                         <td><? echo $lead['ID'];?></td>
                         <td><? echo $lead['TITLE'];?></td>
