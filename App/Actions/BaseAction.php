@@ -4,22 +4,33 @@ namespace App\Actions;
 
 use Curl\Curl;
 
-abstract class BaseAction {
-
-    private $curl;
+/**
+ * Class BaseAction
+ * @package App\Actions
+ */
+abstract class BaseAction
+{
 
     protected $api_url;
 
     protected $serverUrl;
 
-    public function __construct($serverUrl) {
+    protected $curl;
+
+    public function __construct($serverUrl)
+    {
 
         $this->serverUrl = $serverUrl;
 
         $this->curl = new Curl();
 
         $this->curl->setDefaultJsonDecoder(true);
+    }
 
+    public function __destruct()
+    {
+
+        $this->curl->close();
     }
 
     /**
@@ -27,16 +38,9 @@ abstract class BaseAction {
      *
      * @return array
      */
-    protected function curlExecute($queryUrl, $queryData) {
+    protected function curlExecute($queryUrl, $queryData)
+    {
 
         return $this->curl->get($queryUrl, $queryData);
-
     }
-
-    public function __destruct() {
-
-        $this->curl->close();
-
-    }
-
 }

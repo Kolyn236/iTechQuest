@@ -2,12 +2,21 @@
 
 namespace App\Actions;
 
-class LeadAction extends BaseAction {
+/**
+ * Class LeadAction
+ * @package App\Actions
+ */
+class LeadAction extends BaseAction
+{
 
     const API_ENDPOINT = '/crm.lead.';
 
-    public function createLead($fields) {
-
+    /**
+     * @param $fields
+     * @return array
+     */
+    public function createLead($fields)
+    {
         $queryUrl = $this->serverUrl . self::API_ENDPOINT .'add';
         $queryData = http_build_query([
             'fields' => array(
@@ -26,11 +35,14 @@ class LeadAction extends BaseAction {
         ]);
 
         return $this->curlExecute($queryUrl, $queryData);
-
     }
 
-    public function deleteLead($id) {
-
+    /**
+     * @param $id
+     * @return array
+     */
+    public function deleteLead($id)
+    {
         $queryUrl = $this->serverUrl . self::API_ENDPOINT .'delete';
 
         $queryData = http_build_query([
@@ -38,10 +50,13 @@ class LeadAction extends BaseAction {
         ]);
 
         return $this->curlExecute($queryUrl, $queryData);
-
     }
 
-    public function listLead(){
+    /**
+     * @return array
+     */
+    public function listLead()
+    {
 
         $queryUrl = $this->serverUrl . self::API_ENDPOINT .'list';
 
@@ -59,6 +74,5 @@ class LeadAction extends BaseAction {
         ]);
 
         return $this->curlExecute($queryUrl, $queryData);
-
     }
 }
