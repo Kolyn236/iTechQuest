@@ -6,7 +6,7 @@ class LeadAction extends BaseAction {
 
     const API_ENDPOINT = '/crm.lead.';
 
-    public function createLead($fields){
+    public function createLead($fields) {
 
         $queryUrl = $this->serverUrl . self::API_ENDPOINT .'add';
         $queryData = http_build_query([
@@ -29,7 +29,7 @@ class LeadAction extends BaseAction {
 
     }
 
-    public function deleteLead($id){
+    public function deleteLead($id) {
 
         $queryUrl = $this->serverUrl . self::API_ENDPOINT .'delete';
 

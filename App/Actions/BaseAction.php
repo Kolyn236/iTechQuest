@@ -4,7 +4,7 @@ namespace App\Actions;
 
 use Curl\Curl;
 
-abstract class BaseAction{
+abstract class BaseAction {
 
     private $curl;
 
@@ -12,8 +12,7 @@ abstract class BaseAction{
 
     protected $serverUrl;
 
-    public function __construct($serverUrl)
-    {
+    public function __construct($serverUrl) {
 
         $this->serverUrl = $serverUrl;
 
@@ -28,16 +27,16 @@ abstract class BaseAction{
      *
      * @return array
      */
-    protected function curlExecute($queryUrl, $queryData){
+    protected function curlExecute($queryUrl, $queryData) {
 
         return $this->curl->get($queryUrl, $queryData);
 
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
+    public function __destruct() {
+
         $this->curl->close();
+
     }
 
 }

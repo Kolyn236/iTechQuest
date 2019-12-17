@@ -9,7 +9,7 @@
 <body>
 
 <div style="height: 10%;">
-    <div class="alert alert-primary text-center" id="message" role="alert" style="display: none">
+    <div class="alert alert-primary text-center hidden" id="message" role="alert">
         Это уведомление об успехе — check it out!
     </div>
 </div>
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label for="firstName">Имя</label>
                     <input type="name" class="form-control" name="firstname" id="firstName" placeholder="Имя" required>
-                    <div class="error-box">Поле имя обязательно для заполнения</div>
+                    <div class="error-box hidden">Поле имя обязательно для заполнения</div>
                 </div>
                 <div class="form-group">
                     <label for="lastname">Фамилия</label>
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required>
-                    <div class="error-box">Поле email обязательно для заполнения</div>
+                    <div class="error-box hidden">Поле email обязательно для заполнения</div>
                 </div>
 
                 <div class="form-group">
